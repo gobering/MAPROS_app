@@ -37,7 +37,8 @@ $ rails s
 
 ### ER図
 
-![](https://i.imgur.com/hRCVX2r.png)
+![](https://i.imgur.com/BfwoJCZ.png)
+
 
 
 
