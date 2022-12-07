@@ -19,15 +19,13 @@
 
 ### 実行手順
 
-##### _$ git clone git@github.com:gobering/MAPROS_app.git_
-
-####  _$ cd mapros_app_
-
-#### _$ bundle install_
-
-#### _$ rails db:create && rails db:migrate_  
-
-#### _$ rails s_
+```
+$ git clone git@github.com:gobering/MAPROS_app.git
+$ cd mapros_app
+$ bundle install
+$ rails db:create && rails db:migrate
+$ rails s
+```
 
 ### カタログ設計
 
@@ -53,3 +51,4 @@
 ### 画面遷移図
 
 ![](https://i.imgur.com/A8pkRSB.png)
+
