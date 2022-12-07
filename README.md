@@ -37,7 +37,8 @@ $ rails s
 
 ### ER図
 
-![](https://i.imgur.com/08S7JF0.png)
+![](https://i.imgur.com/cWhI13g.png)
+
 
 
 
@@ -50,5 +51,4 @@ $ rails s
 
 ### 画面遷移図
 
-![](https://i.imgur.com/A8pkRSB.png)
-
+![](https://i.imgur.com/7yWLspp.png)
