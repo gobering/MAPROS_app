@@ -1,5 +1,6 @@
 class DangerousSpotsController < ApplicationController
   before_action :set_dangerous_spot, only: %i[ show edit update destroy ]
+  before_action :authenticate_user! 
 
   # GET /dangerous_spots or /dangerous_spots.json
   def index
