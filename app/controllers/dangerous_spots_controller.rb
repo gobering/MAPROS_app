@@ -5,6 +5,7 @@ class DangerousSpotsController < ApplicationController
   # GET /dangerous_spots or /dangerous_spots.json
   def index
     @dangerous_spots = DangerousSpot.all
+    gon.dangerous_spots = DangerousSpot.all
   end
 
   # GET /dangerous_spots/1 or /dangerous_spots/1.json

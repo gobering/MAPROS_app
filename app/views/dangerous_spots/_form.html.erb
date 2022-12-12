@@ -15,6 +15,8 @@
     <%= form.label :address %>
     <%= form.text_field :address %>
     <h2>gmap</h2>
+<input id="address" type="textbox" value="GeekSalon">
+<input type="button" value="Encode" onclick="codeAddress()">
 <div id='map'></div>
 
 <style>
@@ -40,9 +42,29 @@ function initMap(){
     map: map
   });
 }
+
+let geocoder
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
+}
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5ndDC1vnRKBF8z8yp3w2BP1NAEXw_TY&callback=initMap" async defer></script>
+</body>
+</html>
   </div>
 
   <div class="field">
@@ -50,20 +72,6 @@ function initMap(){
     <%= form.text_area :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :latitude %>
-    <%= form.text_field :latitude %>
-  </div>
-
-  <div class="field">
-    <%= form.label :longitude %>
-    <%= form.text_field :longitude %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>

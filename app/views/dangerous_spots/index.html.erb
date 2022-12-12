@@ -1,33 +1,36 @@
 <h1>Dangerous Spots</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Address</th>
-      <th>Content</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+# <table>
+#   <thead>
+#     <tr>
+#       <th>Address</th>
+#       <th>Content</th>
+#       <th>Latitude</th>
+#       <th>Longitude</th>
+#       <th>Image</th>
+#       <th colspan="3"></th>
+#     </tr>
+#   </thead>
 
-  <tbody>
-    <% @dangerous_spots.each do |dangerous_spot| %>
-      <tr>
-        <td><%= dangerous_spot.address %></td>
-        <td><%= dangerous_spot.content %></td>
-        <td><%= dangerous_spot.latitude %></td>
-        <td><%= dangerous_spot.longitude %></td>
-        <td><%= dangerous_spot.image %></td>
-        <td><%= link_to 'Show', dangerous_spot %></td>
-        <td><%= link_to 'Edit', edit_dangerous_spot_path(dangerous_spot) %></td>
-        <td><%= link_to 'Destroy', dangerous_spot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+#   <tbody>
+#     <% @dangerous_spots.each do |dangerous_spot| %>
+#       <tr>
+#         <td><%= dangerous_spot.address %></td>
+#         <td><%= dangerous_spot.content %></td>
+#         <td><%= dangerous_spot.latitude %></td>
+#         <td><%= dangerous_spot.longitude %></td>
+#         <td><%= dangerous_spot.image %></td>
+#         <td><%= link_to 'Show', dangerous_spot %></td>
+#         <td><%= link_to 'Edit', edit_dangerous_spot_path(dangerous_spot) %></td>
+#         <td><%= link_to 'Destroy', dangerous_spot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+#       </tr>
+#     <% end %>
+#   </tbody>
+# </table>
 <h2>gmap</h2>
+<input id="address" type="textbox" value="GeekSalon">
+<input type="button" value="Encode" onclick="codeAddress()">
+<div id="display">何かが表示される、、、、！</div>
 <div id='map'></div>
 
 <style>
@@ -39,19 +42,62 @@
 
 <script>
 let map
+let geocoder
+const display = document.getElementById('display')
+let marker = []; 
+let infoWindow = []; 
+const dangerous_spots = gon.dangerous_spots; 
 
 function initMap(){
   geocoder = new google.maps.Geocoder()
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.7828, lng:-73.9653},
+    center: {lat: 34.4859845, lng:133.3624239},
     zoom: 12,
   });
 
   marker = new google.maps.Marker({
-    position:  {lat: 40.7828, lng:-73.9653},
+    position:  {lat: 34.4859845, lng:133.3624239},
     map: map
   });
+
+  for (let i = 0; i < dangerous_spots.length; i++) {    
+    geocoder.geocode( { 'address': dangerous_spots[i].prefecture_code + dangerous_spots[i].city + dangerous_spots[i].street }, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        marker[i] = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location
+      });
+    let id = dangerous_spots[i]['id']
+    infoWindow[i] = new google.maps.InfoWindow({
+      content: `<a href='/dangerous_spots/${id}'>${dangerous_spots[i].email}</a>`
+    });
+    marker[i].addListener("click", function(){
+      infoWindow[i].open(map, marker[i]);
+    });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+ });
+  }
+};
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+      display.textContent = "検索結果：" + results[ 0 ].geometry.location
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
 }
 </script>
 

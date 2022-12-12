@@ -60,3 +60,4 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'gmaps4rails'
 gem 'geocoder'
+gem "gon"
