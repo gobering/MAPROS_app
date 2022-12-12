@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @dangerous_spot.address %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @dangerous_spot.content %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @dangerous_spot.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @dangerous_spot.longitude %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @dangerous_spot.image %>
+</p>
+
+<%= link_to 'Edit', edit_dangerous_spot_path(@dangerous_spot) %> |
+<%= link_to 'Back', dangerous_spots_path %>

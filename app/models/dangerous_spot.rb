@@ -1,0 +1,2 @@
+class DangerousSpot < ApplicationRecord
+end
