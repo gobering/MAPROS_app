@@ -1,57 +1,36 @@
-<h2>gmap</h2>
-<div id='map'></div>
-
-<style>
-#map {
-  height: 600px;
-  width: 600px;
-}
-</style>
-
-<script>
-let map
-
-function initMap(){
-  geocoder = new google.maps.Geocoder()
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.7828, lng:-73.9653},
-    zoom: 12,
-  });
-
-  marker = new google.maps.Marker({
-    position:  {lat: 40.7828, lng:-73.9653},
-    map: map
-  });
-}
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5ndDC1vnRKBF8z8yp3w2BP1NAEXw_TY&callback=initMap" async defer></script>
-
-<p>
-  <strong>Address:</strong>
-  <%= @dangerous_spot.address %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @dangerous_spot.content %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @dangerous_spot.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @dangerous_spot.longitude %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @dangerous_spot.image %>
-</p>
-
-<%= link_to 'Edit', edit_dangerous_spot_path(@dangerous_spot) %> |
-<%= link_to 'Back', dangerous_spots_path %>
+<div class="dangerous_spot_field">
+  <p>
+    <strong>事象:</strong>
+    <%= @dangerous_spot.content %>
+  </p>
+  
+  <div id='map'></div>
+  <style>
+  #map {
+    height: 600px;
+    width: 100%;
+  }
+  </style>
+  
+  <!-- js部分 -->
+  <script>
+  //初期マップの設定
+  let map
+  let marker
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+    map = new google.maps.Map(document.getElementById('map'), {
+      center:  {lat: <%= @dangerous_spot.latitude %>, lng: <%= @dangerous_spot.longitude %>},
+      zoom: 15,
+    });
+    marker = new google.maps.Marker({
+      position:  {lat: <%= @dangerous_spot.latitude %>, lng: <%= @dangerous_spot.longitude %>},
+      map: map
+    });
+  # }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5ndDC1vnRKBF8z8yp3w2BP1NAEXw_TY&callback=initMap" async defer></script>
+  
+  
+  <%= link_to '戻る', dangerous_spots_path%>
+</div>

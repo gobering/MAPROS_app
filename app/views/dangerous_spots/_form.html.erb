@@ -17,13 +17,13 @@
   </div>
 
   <div class="field d-none">
-    <%= form.label :lat %>
-    <%= form.text_field :lat,:value =>"", id: :lat %>
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude,:value =>"", id: :latitude %>
   </div>
 
   <div class="field d-none">
-    <%= form.label :lang %>
-    <%= form.text_field :lng,:value =>"", id: :lng %>
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude,:value =>"", id: :longitude %>
   </div>
 
   <div class="actions">
@@ -35,8 +35,7 @@
 
 <input id="address" type="textbox" value="" placeholder="地名・地点を入力">
 <input type="button" value="検索" onclick="codeAddress()">
-<p>検索ボックスに最寄の建物や地名等を入力し検索ボタンを押すとマーカーが出現します<p>
-<p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+
 <div id='map'></div>
 
 <style>
@@ -84,14 +83,14 @@ function codeAddress(){
         aft = true
 
         //検索した時に緯度経度を入力する
-        document.getElementById('lat').value = results[0].geometry.location.lat();
-        document.getElementById('lng').value = results[0].geometry.location.lng();
+        document.getElementById('latitude').value = results[0].geometry.location.lat();
+        document.getElementById('longitude').value = results[0].geometry.location.lng();
 
         // マーカーのドロップ（ドラッグ終了）時のイベント
         google.maps.event.addListener( marker, 'dragend', function(ev){
             // イベントの引数evの、プロパティ.latLngが緯度経度
-            document.getElementById('lat').value = ev.latLng.lat();
-            document.getElementById('lng').value = ev.latLng.lng();
+            document.getElementById('latitude').value = ev.latLng.lat();
+            document.getElementById('longitude').value = ev.latLng.lng();
         });
     } else {
       alert('該当する結果がありませんでした：' + status);
