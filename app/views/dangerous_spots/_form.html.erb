@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, placeholder: "地名を入力" %>
+  </div>
+
+  <div class="field">
     <%= form.label :content %>
     <%= form.text_field :content, placeholder: "事象を入力" %>
   </div>

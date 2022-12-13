@@ -1,5 +1,10 @@
 <div class="dangerous_spot_field">
   <p>
+    <strong>住所:</strong>
+    <%= @dangerous_spot.address %>
+  </p>
+
+  <p>
     <strong>事象:</strong>
     <%= @dangerous_spot.content %>
   </p>
@@ -33,7 +38,7 @@
       position:  {lat: <%= @dangerous_spot.latitude %>, lng: <%= @dangerous_spot.longitude %>},
       map: map
     });
-  # }
+  }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5ndDC1vnRKBF8z8yp3w2BP1NAEXw_TY&callback=initMap" async defer></script>
   

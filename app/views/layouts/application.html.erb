@@ -20,6 +20,9 @@
       <%= link_to "ログイン", new_user_session_path %>
     <% end %>
     <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+    <% if current_user.try(:admin?) %>
+      <%= link_to "ラベルの作成", labels_path %>
+    <% end %>
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
     <% end %>
