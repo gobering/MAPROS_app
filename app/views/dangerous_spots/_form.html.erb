@@ -1,22 +1,42 @@
-<%= form_with(model: dangerous_spot) do |form| %>
+<%= form_with(model: dangerous_spot, local: true) do |form| %>
   <% if dangerous_spot.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(dangerous_spot.errors.count, "error") %> prohibited this dangerous_spot from being saved:</h2>
+      <h2><%= pluralize(dangerous_spot.errors.count, "件のエラー") %> が発生したため送信されませんでした</h2>
 
       <ul>
-        <% dangerous_spot.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% dangerous_spot.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-    <h2>gmap</h2>
-<input id="address" type="textbox" value="GeekSalon">
-<input type="button" value="Encode" onclick="codeAddress()">
+    <%= form.label :content %>
+    <%= form.text_field :content, placeholder: "事象を入力" %>
+  </div>
+
+  <div class="field d-none">
+    <%= form.label :lat %>
+    <%= form.text_field :lat,:value =>"", id: :lat %>
+  </div>
+
+  <div class="field d-none">
+    <%= form.label :lang %>
+    <%= form.text_field :lng,:value =>"", id: :lng %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<h2>マップ</h2>
+
+<input id="address" type="textbox" value="" placeholder="地名・地点を入力">
+<input type="button" value="検索" onclick="codeAddress()">
+<p>検索ボックスに最寄の建物や地名等を入力し検索ボタンを押すとマーカーが出現します<p>
+<p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
 <div id='map'></div>
 
 <style>
@@ -27,53 +47,57 @@
 </style>
 
 <script>
+//初期マップの設定
 let map
-
+let marker
 function initMap(){
   geocoder = new google.maps.Geocoder()
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.7828, lng:-73.9653},
-    zoom: 12,
-  });
+    center:  {lat: 35.6803997, lng:139.7690174},  //東京
+    zoom: 15,
 
-  marker = new google.maps.Marker({
-    position:  {lat: 40.7828, lng:-73.9653},
-    map: map
   });
 }
 
+//検索後のマップ作成
 let geocoder
-
+let aft
 function codeAddress(){
   let inputAddress = document.getElementById('address').value;
-
   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
     if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
+        //マーカーが複数できないようにする
+        if (aft == true){
+            marker.setMap(null);
+        }
+
+        //新しくマーカーを作成する
+        map.setCenter(results[0].geometry.location);
+            marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            draggable: true // ドラッグ可能にする
+        });
+
+        //二度目以降か判断
+        aft = true
+
+        //検索した時に緯度経度を入力する
+        document.getElementById('lat').value = results[0].geometry.location.lat();
+        document.getElementById('lng').value = results[0].geometry.location.lng();
+
+        // マーカーのドロップ（ドラッグ終了）時のイベント
+        google.maps.event.addListener( marker, 'dragend', function(ev){
+            // イベントの引数evの、プロパティ.latLngが緯度経度
+            document.getElementById('lat').value = ev.latLng.lat();
+            document.getElementById('lng').value = ev.latLng.lng();
+        });
     } else {
       alert('該当する結果がありませんでした：' + status);
     }
   });   
 }
+
 </script>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5ndDC1vnRKBF8z8yp3w2BP1NAEXw_TY&callback=initMap" async defer></script>
-</body>
-</html>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
