@@ -1,4 +1,8 @@
-<h1>Dangerous Spots</h1>
+<% if current_user.try(:admin?) %>
+  <h1>Dangerous Spots Admin</h1>
+<% else %>
+  <h1>Dangerous Spots</h1>
+<% end %>
 
 # <table>
 #   <thead>

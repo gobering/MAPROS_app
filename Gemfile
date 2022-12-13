@@ -61,3 +61,5 @@ gem 'devise-i18n'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem "gon"
+gem 'rails_admin', '~> 3.0'
+gem 'cancancan'
