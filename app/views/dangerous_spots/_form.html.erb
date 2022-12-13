@@ -16,6 +16,13 @@
     <%= form.text_field :content, placeholder: "事象を入力" %>
   </div>
 
+  <div class="task_list">
+    <% Label.all.each do |label| %>
+    <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+    <%= label.name %>
+    <% end %>
+  </div>
+
   <div class="field d-none">
     <%= form.label :latitude %>
     <%= form.text_field :latitude,:value =>"", id: :latitude %>

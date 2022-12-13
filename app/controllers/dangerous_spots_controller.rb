@@ -67,6 +67,6 @@ class DangerousSpotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dangerous_spot_params
-      params.require(:dangerous_spot).permit(:address, :content, :latitude, :longitude, :image)
+      params.require(:dangerous_spot).permit(:address, :content, :latitude, :longitude, :image, { label_ids: [] } )
     end
 end

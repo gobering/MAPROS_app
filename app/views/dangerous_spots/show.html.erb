@@ -3,6 +3,12 @@
     <strong>事象:</strong>
     <%= @dangerous_spot.content %>
   </p>
+
+  <p>ラベル: 
+    <% @dangerous_spot.labels.each do |label| %>
+      <%= label.name %>
+    <% end %>
+  </p>
   
   <div id='map'></div>
   <style>
