@@ -56,10 +56,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'rexml'
-gem 'devise'
 gem 'devise-i18n'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem "gon"
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
+gem 'dotenv-rails'

@@ -37,10 +37,10 @@
     marker = new google.maps.Marker({
       position:  {lat: <%= @dangerous_spot.latitude %>, lng: <%= @dangerous_spot.longitude %>},
       map: map
-    });
+   });
   }
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5ndDC1vnRKBF8z8yp3w2BP1NAEXw_TY&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
   
   
   <%= link_to '戻る', dangerous_spots_path%>
