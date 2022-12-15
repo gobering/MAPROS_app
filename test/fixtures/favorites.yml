@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  dangerous_spot: one
+
+two:
+  user: two
+  dangerous_spot: two

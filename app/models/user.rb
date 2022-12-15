@@ -13,4 +13,5 @@ class User < ApplicationRecord
     end
   end
   validates :name, presence: true
+  has_many :favorites, dependent: :destroy
 end
