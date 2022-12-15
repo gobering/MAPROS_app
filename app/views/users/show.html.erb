@@ -1,3 +1,12 @@
-<h1><%= current_user.name %>のページ</h1>
+<% if current_user.try(:admin?) %>
+  <h1>管理者ページ</h1>
+<% else %>
+  <h1><%= current_user.name %>のページ</h1>
+<% end %>
 
 <p>メールアドレス: <%= @user.email %></p>
+
+<% if current_user.try(:admin?) %>
+  <%= link_to "ラベルの作成", labels_path %>
+  <%= link_to "詳細管理", rails_admin_path %>
+<% end %>

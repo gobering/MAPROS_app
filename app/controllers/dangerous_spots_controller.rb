@@ -27,7 +27,7 @@ class DangerousSpotsController < ApplicationController
 
     respond_to do |format|
       if @dangerous_spot.save
-        format.html { redirect_to dangerous_spot_url(@dangerous_spot), notice: "Dangerous spot was successfully created." }
+        format.html { redirect_to dangerous_spots_path, notice: "Dangerous spot was successfully created." }
         format.json { render :show, status: :created, location: @dangerous_spot }
       else
         format.html { render :new, status: :unprocessable_entity }
