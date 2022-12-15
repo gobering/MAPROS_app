@@ -21,6 +21,15 @@
     <%= form.text_field :content, placeholder: "事象を入力" %>
   </div>
 
+  
+  <div class="field d-none">
+    <%= form.hidden_field :latitude,:value =>"", id: :latitude %>
+  </div> 
+
+  <div class="field d-none">
+    <%= form.hidden_field :longitude,:value =>"", id: :longitude %>
+  </div>
+
   <div class="task_list">
     <% Label.all.each do |label| %>
     <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
@@ -51,14 +60,26 @@
 //初期マップの設定
 let map
 let marker
+
+
 function initMap(){
   geocoder = new google.maps.Geocoder()
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center:  {lat: 35.6803997, lng:139.7690174},  //東京
-    zoom: 15,
-    
-  });
+  if (typeof gon.dangerous_spot !== 'undefined'){
+    let markerData = gon.dangerous_spot;
+    map = new google.maps.Map(document.getElementById('map'), {
+      center:  {lat: markerData['latitude'], lng: markerData['longitude']},
+      zoom: 15,
+    });
+    marker = new google.maps.Marker({
+      position:  {lat:  markerData['latitude'], lng: markerData['longitude']},
+      map: map
+   });
+  } else {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center:  {lat: 35.6803997, lng:139.7690174},  //東京
+      zoom: 15,
+    });
+  }
 }
 
 //検索後のマップ作成

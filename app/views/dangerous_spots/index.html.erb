@@ -18,9 +18,9 @@
       <tr>
         <td><%= dangerous_spot.address %></td>
         <td><%= dangerous_spot.content %></td>
-        <td><%= link_to 'Show', dangerous_spot %></td>
-        <td><%= link_to 'Edit', edit_dangerous_spot_path(dangerous_spot) %></td>
-        <td><%= link_to 'Destroy', dangerous_spot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '詳細', dangerous_spot, data: {"turbolinks" => false} %></td>
+        <td><%= link_to '編集', edit_dangerous_spot_path(dangerous_spot), data: {"turbolinks" => false} %></td>
+        <td><%= link_to '削除', dangerous_spot, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
       </tr>
     <% end %>
   </tbody>

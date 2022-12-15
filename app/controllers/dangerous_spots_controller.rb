@@ -19,6 +19,7 @@ class DangerousSpotsController < ApplicationController
 
   # GET /dangerous_spots/1/edit
   def edit
+    gon.dangerous_spot = DangerousSpot.find(params[:id])
   end
 
   # POST /dangerous_spots or /dangerous_spots.json
