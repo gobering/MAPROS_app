@@ -13,3 +13,86 @@
   <%= link_to "ラベルの作成", labels_path %>
   <%= link_to "詳細管理", rails_admin_path %>
 <% end %>
+
+<h2>gmap</h2>
+<input id="address" type="textbox" placeholder="地名・地点を入力">
+<input type="button" value="検索" onclick="codeAddress()">
+<div id='map'></div>
+
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+let map
+let geocoder
+const display = document.getElementById('display')
+let marker = []; 
+let infoWindow = []; 
+let markerData = gon.users; 
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: 35.6803997, lng:139.7690174}, 
+    zoom: 5,
+  });
+
+  
+  for (var i = 0; i < markerData.length; i++) {
+    let id = markerData[i]['id']
+
+    // 各地点の緯度経度を算出
+    markerLatLng = new google.maps.LatLng({
+      lat: markerData[i]['latitude'],
+      lng: markerData[i]['longitude']
+    });
+
+    // 各地点のマーカーを作成
+    marker[i] = new google.maps.Marker({
+      position: markerLatLng,
+      map: map
+    });
+
+    // 各地点の吹き出しを作成
+    infoWindow[i] = new google.maps.InfoWindow({
+      // 吹き出しの内容
+      content: `<a href='/dangerous_spots/${ id }' data-turbolinks="false">${ markerData[i]['address'] }</a>`
+    });
+
+    // マーカーにクリックイベントを追加
+    markerEvent(i);
+  }
+};
+
+function markerEvent(i) {
+  marker[i].addListener('click', function () {
+    infoWindow[i].open(map, marker[i]);
+  });
+}
+
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+      display.textContent = "検索結果：" + results[ 0 ].geometry.location
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
+}
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>

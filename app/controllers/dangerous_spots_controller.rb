@@ -25,7 +25,7 @@ class DangerousSpotsController < ApplicationController
 
   # POST /dangerous_spots or /dangerous_spots.json
   def create
-    @dangerous_spot = DangerousSpot.new(dangerous_spot_params)
+    @dangerous_spot = current_user.dangerous_spots.build(dangerous_spot_params)
 
     respond_to do |format|
       if @dangerous_spot.save

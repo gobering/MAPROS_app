@@ -19,8 +19,16 @@
         <td><%= dangerous_spot.address %></td>
         <td><%= dangerous_spot.content %></td>
         <td><%= link_to '詳細', dangerous_spot, data: {"turbolinks" => false} %></td>
-        <td><%= link_to '編集', edit_dangerous_spot_path(dangerous_spot), data: {"turbolinks" => false} %></td>
-        <td><%= link_to '削除', dangerous_spot, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+        <td>
+          <% if dangerous_spot.user_id == current_user.id %>
+            <%= link_to '編集', edit_dangerous_spot_path(dangerous_spot), data: {"turbolinks" => false} %>
+          <% end %>  
+        </td>
+        <td>
+          <% if dangerous_spot.user_id == current_user.id %>
+            <%= link_to '削除', dangerous_spot, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -73,7 +81,7 @@ function initMap(){
     // 各地点の吹き出しを作成
     infoWindow[i] = new google.maps.InfoWindow({
       // 吹き出しの内容
-      content: `<a href='/dangerous_spots/${ id }'>${ markerData[i]['address'] }</a>`
+      content: `<a href='/dangerous_spots/${ id }' data-turbolinks="false">${ markerData[i]['address'] }</a>`
     });
 
     // マーカーにクリックイベントを追加
@@ -108,8 +116,6 @@ function codeAddress(){
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
-</body>
-</html>
 
 <br>
 
