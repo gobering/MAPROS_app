@@ -2,5 +2,5 @@
 
 <%= render 'form', dangerous_spot: @dangerous_spot %>
 
-<%= link_to 'Show', @dangerous_spot %> |
-<%= link_to 'Back', dangerous_spots_path %>
+<%= link_to '詳細', @dangerous_spot, data: {"turbolinks" => false} %> 
+<%= link_to '戻る', dangerous_spots_path, data: {"turbolinks" => false} %>

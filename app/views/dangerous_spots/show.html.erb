@@ -9,7 +9,7 @@
     <%= @dangerous_spot.content %>
   </p>
 
-  <p>ラベル: 
+  <p>状況: 
     <% @dangerous_spot.labels.each do |label| %>
       <%= label.name %>
     <% end %>
@@ -43,5 +43,5 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
   
   
-  <%= link_to '戻る', dangerous_spots_path%>
+  <%= link_to '戻る', dangerous_spots_path, data: {"turbolinks" => false}  %>
 </div>
