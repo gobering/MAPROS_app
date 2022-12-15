@@ -10,6 +10,7 @@ class DangerousSpotsController < ApplicationController
 
   # GET /dangerous_spots/1 or /dangerous_spots/1.json
   def show
+    @favorite = current_user.favorites.find_by(dangerous_spot_id: @dangerous_spot.id)
   end
 
   # GET /dangerous_spots/new
@@ -68,6 +69,6 @@ class DangerousSpotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dangerous_spot_params
-      params.require(:dangerous_spot).permit(:address, :content, :latitude, :longitude, :image, { label_ids: [] } )
+      params.require(:dangerous_spot).permit(:address, :content, :latitude, :longitude, :user_id, :image, { label_ids: [] } )
     end
 end
