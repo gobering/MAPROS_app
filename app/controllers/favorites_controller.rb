@@ -1,7 +1,10 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!
   
   def index
-    @favorites = current_user.favorites
+    favorites = Favorite.where(user_id: current_user.id).pluck(:dangerous_spot_id)
+    @favorites = DangerousSpot.find(favorites)
+    gon.favorites = DangerousSpot.find(favorites)
   end
 
   def create

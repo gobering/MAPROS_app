@@ -18,7 +18,7 @@ let geocoder
 const display = document.getElementById('display')
 let marker = []; 
 let infoWindow = []; 
-let markerData = gon.dangerous_spots; 
+let markerData = gon.favorites; 
 
 function initMap(){
   geocoder = new google.maps.Geocoder()
@@ -82,3 +82,5 @@ function codeAddress(){
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
+
+<%= link_to '戻る', user_path(current_user), data: {"turbolinks" => false}  %>

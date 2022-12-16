@@ -7,7 +7,7 @@
 <p>メールアドレス: <%= @user.email %></p>
 
 
-<%= link_to 'お気に入り一覧へ', favorites_path %>
+<%= link_to 'お気に入り一覧へ', favorites_path, data: {"turbolinks" => false} %>
 
 <% if current_user.try(:admin?) %>
   <%= link_to "ラベルの作成", labels_path %>
