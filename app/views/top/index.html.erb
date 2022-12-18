@@ -1,10 +1,19 @@
 <%= image_tag 'HatchfulExport-All (1)/logo_transparent.png', class: "w-25" %>
-<h1 class="important">トップページ</h1>
+<br>
+<strong>~地図で笑顔を守る　Map Protect Smile~</strong>
 
-<div class="flex-column d-flex ">
-  <%= link_to "新規登録", new_user_registration_path %>
-  <%= link_to "ログイン", new_user_session_path %>
-  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %></div>
-  <%= link_to 'ゲスト管理者ログイン（閲覧用）', users_admin_guest_sign_in_path, method: :post %>
-</div>
+<h2 class="mt-2">コンセプト</h2>
+<p>事故が多い場所や事故が起きそうな場所を「危険地点」として登録してみんなで共有するアプリです。</p>
+<p>引っ越した先や普段通らない道を、車・自転車・散歩する時にどういう場所に注意すべきか知っておき、願わない事故や事件から自分や大切な人を守ることができます。</p>
+<h2>機能</h2>
+<p>・Google Mapでみんなが投稿した地点を見ることができます。</p>
+<p>・自分が投稿したものをマイページで一覧で見ることができます。</p>
+<p>・自分の住んでいる地域の近くの投稿を「お気に入り登録」してまとめることができます。</p>
+
+
+<div><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-secondary mb-1" %></div>
+<div><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-secondary mb-1" %></div>
+<div><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mb-1" %></div>
+<div><%= link_to 'ゲスト管理者ログイン（閲覧用）', users_admin_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mb-1" %></div>
+
 
