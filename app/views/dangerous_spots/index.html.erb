@@ -1,8 +1,8 @@
 <div class="container">
   <% if current_user.try(:admin?) %>
-    <h1>危険地点一覧(管理者)</h1>
+    <h1 class="important">危険地点一覧(管理者)</h1>
   <% else %>
-    <h1>危険地点一覧</h1>
+    <h1 class="important">危険地点一覧</h1>
   <% end %>
 
   <div class="input-group mb-3">

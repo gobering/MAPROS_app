@@ -1,8 +1,8 @@
 <div class="container">
   <% if current_user.try(:admin?) %>
-    <h1>管理者ページ</h1>
+    <h1 class="important">管理者ページ</h1>
   <% else %>
-    <h1><%= current_user.name %>のページ</h1>
+    <h1 class="important"><%= current_user.name %>のページ</h1>
   <% end %>
 
   <div id='map' class="p-2 w-100 bd-highlight"></div>
