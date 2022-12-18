@@ -36,6 +36,11 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能・管理�
         visit dangerous_spots_path
         expect(page).to have_content '危険地点一覧'
       end
+      it 'お気に入り一覧画面に遷移する' do
+        click_on "お気に入り一覧"
+        visit favorites_path
+        expect(page).to have_content '自分のお気に入り一覧'
+      end
     end
     context 'ログアウトした場合' do
       it "ログイン画面に戻る" do
