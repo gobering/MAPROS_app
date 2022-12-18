@@ -1,44 +1,47 @@
-<% if current_user.try(:admin?) %>
-  <h1>危険地点(管理者画面)</h1>
-<% else %>
-  <h1>危険地点</h1>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>地域</th>
-      <th>内容</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @dangerous_spots.each do |dangerous_spot| %>
+<div class="container">
+  <% if current_user.try(:admin?) %>
+    <h1>危険地点(管理者画面)</h1>
+  <% else %>
+    <h1>危険地点</h1>
+  <% end %>
+  <h2>gmap</h2>
+  <input id="address" type="textbox" placeholder="地名・地点を入力">
+  <input type="button" value="検索" onclick="codeAddress()">
+  <%= link_to '新規投稿', new_dangerous_spot_path, data: {"turbolinks" => false}, class: "mt-2" %>
+  <div class="index">
+  <table class="table p-2 flex-shrink-1 bd-highlight">
+    <thead>
       <tr>
-        <td><%= dangerous_spot.address %></td>
-        <td><%= dangerous_spot.content %></td>
-        <td><%= link_to '詳細', dangerous_spot, data: {"turbolinks" => false} %></td>
-        <td>
-          <% if dangerous_spot.user_id == current_user.id %>
-            <%= link_to '編集', edit_dangerous_spot_path(dangerous_spot), data: {"turbolinks" => false} %>
-          <% end %>  
-        </td>
-        <td>
-          <% if dangerous_spot.user_id == current_user.id %>
-            <%= link_to '削除', dangerous_spot, method: :delete, data: { confirm: '本当に削除しますか?' } %>
-          <% end %>
-        </td>
+        <th>地域</th>
+        <th>内容</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @dangerous_spots.each do |dangerous_spot| %>
+        <tr>
+          <td><%= dangerous_spot.address %></td>
+          <td><%= dangerous_spot.content %></td>
+          <td><%= link_to '詳細', dangerous_spot, data: {"turbolinks" => false} %></td>
+          <td>
+            <% if dangerous_spot.user_id == current_user.id %>
+              <%= link_to '編集', edit_dangerous_spot_path(dangerous_spot), data: {"turbolinks" => false} %>
+            <% end %>  
+          </td>
+          <td>
+            <% if dangerous_spot.user_id == current_user.id %>
+              <%= link_to '削除', dangerous_spot, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="pagination"><%= paginate @dangerous_spots %></div>
+</div>
 
-<h2>gmap</h2>
-<input id="address" type="textbox" placeholder="地名・地点を入力">
-<input type="button" value="検索" onclick="codeAddress()">
-<div id='map'></div>
-
+<div id='map' class="p-2 w-100 bd-highlight"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
 <style>
 #map {
   height: 600px;
@@ -56,68 +59,62 @@ let markerData = gon.dangerous_spots;
 
 function initMap(){
   geocoder = new google.maps.Geocoder()
-
+  
   map = new google.maps.Map(document.getElementById('map'), {
     center:  {lat: 35.6803997, lng:139.7690174},  //東京
     zoom: 5,
-  });
-
-  
-  for (var i = 0; i < markerData.length; i++) {
-    let id = markerData[i]['id']
-
-    // 各地点の緯度経度を算出
-    markerLatLng = new google.maps.LatLng({
-      lat: markerData[i]['latitude'],
-      lng: markerData[i]['longitude']
     });
-
-    // 各地点のマーカーを作成
-    marker[i] = new google.maps.Marker({
-      position: markerLatLng,
-      map: map
-    });
-
-    // 各地点の吹き出しを作成
-    infoWindow[i] = new google.maps.InfoWindow({
-      // 吹き出しの内容
-      content: `<a href='/dangerous_spots/${ id }' data-turbolinks="false">${ markerData[i]['address'] }</a>`
-    });
-
-    // マーカーにクリックイベントを追加
-    markerEvent(i);
-  }
-};
-
-function markerEvent(i) {
-  marker[i].addListener('click', function () {
-    infoWindow[i].open(map, marker[i]);
-  });
-}
-
-
-function codeAddress(){
-  let inputAddress = document.getElementById('address').value;
-
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-      display.textContent = "検索結果：" + results[ 0 ].geometry.location
-    } else {
-      alert('該当する結果がありませんでした：' + status);
-    }
-  });   
-}
-
+    
+    
+    for (var i = 0; i < markerData.length; i++) {
+      let id = markerData[i]['id']
+      
+      // 各地点の緯度経度を算出
+      markerLatLng = new google.maps.LatLng({
+        lat: markerData[i]['latitude'],
+        lng: markerData[i]['longitude']
+        });
+        
+        // 各地点のマーカーを作成
+        marker[i] = new google.maps.Marker({
+          position: markerLatLng,
+          map: map
+          });
+          
+          // 各地点の吹き出しを作成
+          infoWindow[i] = new google.maps.InfoWindow({
+            // 吹き出しの内容
+            content: `<a href='/dangerous_spots/${ id }' data-turbolinks="false">${ markerData[i]['address'] }</a>`
+            });
+            
+            // マーカーにクリックイベントを追加
+            markerEvent(i);
+          }
+          };
+          
+          function markerEvent(i) {
+            marker[i].addListener('click', function () {
+              infoWindow[i].open(map, marker[i]);
+              });
+            }
+            
+            
+            function codeAddress(){
+              let inputAddress = document.getElementById('address').value;
+              
+              geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+                if (status == 'OK') {
+                  map.setCenter(results[0].geometry.location);
+                  var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                    });
+                    display.textContent = "検索結果：" + results[ 0 ].geometry.location
+                    } else {
+                      alert('該当する結果がありませんでした：' + status);
+                    }
+                    });   
+                  }
+                  
 </script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
-
-<br>
-
-
-<%= link_to '新規投稿', new_dangerous_spot_path, data: {"turbolinks" => false} %>
+                                  

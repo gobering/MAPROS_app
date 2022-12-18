@@ -4,7 +4,7 @@ class DangerousSpotsController < ApplicationController
 
   # GET /dangerous_spots or /dangerous_spots.json
   def index
-    @dangerous_spots = DangerousSpot.all
+    @dangerous_spots = DangerousSpot.all.page(params[:page]).per(2)
     gon.dangerous_spots = DangerousSpot.all
   end
 

@@ -12,4 +12,36 @@
  *
  *= require_tree .
  *= require_self
- */
+*/
+ 
+body{
+  padding-top: 7rem;
+  margin-bottom: 2rem;
+}
+
+.information{
+  text-align: right;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;     /*背景の色を変える*/
+}
+
+footer { 
+  bottom: 0px; 
+  width: 100%; 
+  text-align: center; 
+  padding-top: 10px; 
+  color: #bfc5ca; 
+}
+
