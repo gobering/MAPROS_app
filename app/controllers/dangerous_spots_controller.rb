@@ -3,7 +3,7 @@ class DangerousSpotsController < ApplicationController
   before_action :authenticate_user! 
 
   def index
-    @dangerous_spots = DangerousSpot.all.page(params[:page]).per(2)
+    @dangerous_spots = DangerousSpot.all.page(params[:page]).per(3)
     gon.dangerous_spots = DangerousSpot.all
   end
 
@@ -24,7 +24,7 @@ class DangerousSpotsController < ApplicationController
 
     respond_to do |format|
       if @dangerous_spot.save
-        format.html { redirect_to dangerous_spots_path, notice: "Dangerous spot was successfully created." }
+        format.html { redirect_to dangerous_spots_path, notice: "登録完了！" }
         format.json { render :show, status: :created, location: @dangerous_spot }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,7 +36,7 @@ class DangerousSpotsController < ApplicationController
   def update
     respond_to do |format|
       if @dangerous_spot.update(dangerous_spot_params)
-        format.html { redirect_to dangerous_spot_url(@dangerous_spot), notice: "Dangerous spot was successfully updated." }
+        format.html { redirect_to dangerous_spot_url(@dangerous_spot), notice: "編集完了！" }
         format.json { render :show, status: :ok, location: @dangerous_spot }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,7 +49,7 @@ class DangerousSpotsController < ApplicationController
     @dangerous_spot.destroy
 
     respond_to do |format|
-      format.html { redirect_to dangerous_spots_url, notice: "Dangerous spot was successfully destroyed." }
+      format.html { redirect_to dangerous_spots_url, notice: "削除完了！" }
       format.json { head :no_content }
     end
   end
@@ -61,6 +61,6 @@ class DangerousSpotsController < ApplicationController
   end
 
   def dangerous_spot_params
-    params.require(:dangerous_spot).permit(:address, :content, :latitude, :longitude, :user_id, :image, { label_ids: [] } )
+    params.require(:dangerous_spot).permit(:address, :content, :detail, :latitude, :longitude, :user_id, :image, { label_ids: [] } )
   end
 end

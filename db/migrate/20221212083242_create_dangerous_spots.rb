@@ -5,7 +5,7 @@ class CreateDangerousSpots < ActiveRecord::Migration[6.1]
       t.text :content
       t.float :latitude
       t.float :longitude
-      t.string :image
+      t.string :detail
 
       t.timestamps
     end

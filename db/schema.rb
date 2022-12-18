@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_12_15_090046) do
     t.text "content"
     t.float "latitude"
     t.float "longitude"
-    t.string "image"
+    t.string "detail"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"

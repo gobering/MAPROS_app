@@ -1,6 +1,8 @@
-<h1>Editing Dangerous Spot</h1>
+<div class="container">
+  <h1>危険地点の編集</h1>
 
-<%= render 'form', dangerous_spot: @dangerous_spot %>
+  <%= render 'form', dangerous_spot: @dangerous_spot %>
 
-<%= link_to '詳細', @dangerous_spot, data: {"turbolinks" => false} %> 
-<%= link_to '戻る', dangerous_spots_path, data: {"turbolinks" => false} %>
+  <%= link_to '詳細', @dangerous_spot, data: {"turbolinks" => false} %> 
+  <%= link_to '戻る', dangerous_spots_path, data: {"turbolinks" => false} %>
+</div>

@@ -1,15 +1,21 @@
 <div class="dangerous_spot_field">
+  <h1>危険地点の詳細</h1>
   <p>
     <strong>住所:</strong>
     <%= @dangerous_spot.address %>
   </p>
 
   <p>
-    <strong>事象:</strong>
+    <strong>愚痴:</strong>
     <%= @dangerous_spot.content %>
   </p>
 
-  <p>状況: 
+  <p>
+    <strong>内容:</strong>
+    <%= @dangerous_spot.detail %>
+  </p>
+
+  <p>シチュエーション: 
     <% @dangerous_spot.labels.each do |label| %>
       <%= label.name %>
     <% end %>
@@ -24,15 +30,15 @@
   <% end %>
 
   <% if @dangerous_spot.user_id == current_user.id %>
-    <%= link_to '編集', edit_dangerous_spot_path(@dangerous_spot), data: {"turbolinks" => false} %>
+    <%= link_to '編集', edit_dangerous_spot_path(@dangerous_spot), data: {"turbolinks" => false}, class: "btn btn-outline-danger" %>
   <% end %> 
 
   <% if @dangerous_spot.user_id == current_user.id %>
-    <%= link_to '削除', @dangerous_spot, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+    <%= link_to '削除', @dangerous_spot, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-dark" %>
   <% end %>
 
   
-  <div id='map'></div>
+  <div id='map' class="p-2 w-100 bd-highlight mt-2"></div>
   <style>
   #map {
     height: 600px;
@@ -59,6 +65,4 @@
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
   
-  
-  <%= link_to '戻る', dangerous_spots_path, data: {"turbolinks" => false}  %>
 </div>

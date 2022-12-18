@@ -14,9 +14,15 @@
  *= require_self
 */
  
+
+
 body{
   padding-top: 7rem;
   margin-bottom: 2rem;
+}
+
+.main{
+  text-align: center;
 }
 
 .pagination {
@@ -31,6 +37,14 @@ body{
 /* 表示しているページ番号のデザイン */
 .pagination>.active>a {     
   background: #93c9ff;     /*背景の色を変える*/
+}
+
+.label_title{
+  text-align: center;
+}
+
+.label_btn{
+  text-align: center;
 }
 
 footer { 

@@ -1,6 +1,6 @@
-<h1>ラベル一覧</h1>
+<h1 class="label_title">ラベル一覧</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>ラベル名</th>
@@ -12,9 +12,9 @@
     <% @labels.each do |label| %>
       <tr>
         <td><%= label.name %></td>
-        <td><%= link_to '詳細', label %></td>
-        <td><%= link_to '編集', edit_label_path(label) %></td>
-        <td><%= link_to '削除', label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '詳細', label, class: "btn btn-outline-primary" %></td>
+        <td><%= link_to '編集', edit_label_path(label), class: "btn btn-outline-success" %></td>
+        <td><%= link_to '削除', label, method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'ラベル新規作成', new_label_path %>
+<div class="label_btn"><%= link_to 'ラベル新規作成', new_label_path, class: "btn btn-primary" %></div>

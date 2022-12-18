@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      kakaka:
+  attributes:
+    kakaka:
+      jajaja:
+    errors:
+      models:
+        user:
+          attributes:
+            name: 
+              blank: "~が空欄です"

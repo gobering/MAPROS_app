@@ -12,15 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :address %>
+    <%= form.label :地名 %>
     <%= form.text_field :address, placeholder: "地名を入力" %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content, placeholder: "事象を入力" %>
+    <%= form.label :愚痴 %>
+    <%= form.text_field :content, placeholder: "事象に対して一言" %>
   </div>
 
+  <div class="field">
+    <%= form.label :内容 %>
+    <%= form.text_area :detail, placeholder: "内容を入力" %>
+  </div>
   
   <div class="field d-none">
     <%= form.hidden_field :latitude,:value =>"", id: :latitude %>
@@ -42,12 +46,16 @@
   </div>
 <% end %>
 
-<h2>マップ</h2>
+<br>
 
-<input id="address" type="textbox" value="" placeholder="地名・地点を入力">
-<input type="button" value="検索" onclick="codeAddress()">
+<div class="input-group mb-3">
+  <input id="address" type="text" id="txt-search" class="form-control input-group-prepend" placeholder="地名・地点を入力を入力"></input>
+  <span class="input-group-btn input-group-append">
+    <input type="button" id="btn-search" value="検索" class="btn btn-primary" onclick="codeAddress()"><i class="fas fa-search"></i> </input>
+  </span>
+</div>
 
-<div id='map'></div>
+<div id='map' class="p-2 w-100 bd-highlight"></div>
 
 <style>
 #map {
