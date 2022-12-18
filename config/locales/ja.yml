@@ -38,3 +38,11 @@ ja:
         attributes:
           name: 
             blank: '~が空欄です'
+      dangerous_spot:
+        attributes:
+          address: '地域'
+          content: '愚痴'
+          latitude: '緯度'
+          longitude: '経度'
+          detail: '詳細'
+          

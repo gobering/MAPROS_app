@@ -3,11 +3,9 @@
     <div id="error_explanation">
       <h2><%= pluralize(dangerous_spot.errors.count, "件のエラー") %> が発生したため送信されませんでした</h2>
 
-      <ul>
-        <% dangerous_spot.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+      <% dangerous_spot.errors.full_messages.each do |message| %>
+        <br><%= message %>
+      <% end %>
     </div>
   <% end %>
 

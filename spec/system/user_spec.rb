@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe 'ユーザ登録・ログイン・ログアウト機能・管理画面テスト', type: :system do
+RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :system do
   describe 'ユーザ登録のテスト' do
     context 'ユーザ登録がなくログインしていない場合' do
       it 'ユーザ新規登録のテスト' do
