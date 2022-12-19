@@ -1,8 +1,11 @@
 require 'rails_helper'
 describe '投稿機能', type: :model do
-  context 'を作成' do
+  before do
+    @user = FactoryBot.create(:second_user)
+  end
+  context '投稿を作成' do
     it '作成した内容が正しく反映される' do
-      post = FactoryBot.build(:dangerous_spot)
+      post = FactoryBot.build(:dangerous_spot, user_id: @user.id)
       expect(post).to be_valid
     end
   end

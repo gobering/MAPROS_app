@@ -6,5 +6,6 @@ FactoryBot.define do
     detail { '暗くて人とぶつかりそうになった' }
     latitude { '35.6803997' } 
     longitude { '139.7690174' }
+    user_id {1}
   end
 end

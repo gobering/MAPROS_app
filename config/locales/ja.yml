@@ -7,38 +7,29 @@ ja:
         latitude: '緯度'
         longitude: '経度'
         detail: '詳細'
+        user_id: 'ユーザーid'
+        created_at: '作成日時'
+        updated_at: '更新日時'
+      favorite:
+        user_id: 'ユーザーid'
+        dangerous_spot_id: '危険地点id'
+        created_at: '作成日時'
+        updated_at: '更新日時'
+      labelling:
+        dangerous_spot_id: '危険地点id'
+        label_id: 'ラベルid'
+        created_at: '作成日時'
+        updated_at: '更新日時'
+      label:
+        name: 'ラベル名'
+        created_at: '作成日時'
+        updated_at: '更新日時'
     models:
       user: "ユーザー"
       dangerous_spot: '危険地点'
       favorite: 'お気に入り'
       labelling: 'ラベルと危険地点の中間テーブル'
       label: 'ラベル'
-  attributes:
-    user:
-      name: 'あだ名'
-    dangerous_spot:
-      address: '地域'
-      content: '愚痴'
-      latitude: '緯度'
-      longitude: '経度'
-      detail: '詳細'
-      user_id: 'ユーザーid'
-      created_at: '作成日時'
-      updated_at: '更新日時'
-    favorite:
-      user_id: 'ユーザーid'
-      dangerous_spot_id: '危険地点id'
-      created_at: '作成日時'
-      updated_at: '更新日時'
-    labelling:
-      dangerous_spot_id: '危険地点id'
-      label_id: 'ラベルid'
-      created_at: '作成日時'
-      updated_at: '更新日時'
-    label:
-      name: 'ラベル名'
-      created_at: '作成日時'
-      updated_at: '更新日時'
   date:
     abbr_day_names:
     - 日
