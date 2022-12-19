@@ -17,15 +17,6 @@ RSpec.describe '投稿', type: :system do
         expect(page).to have_content '危険地点の新規作成'
       end
     end
-    context '編集する場合' do
-      it '編集がうまく行われる' do
-        visit dangerous_spots_path
-        click_link '編集'
-        visit edit_dangerous_spot_path(1)
-        click_button '更新する'
-        expect(page).to have_content '編集完了！'
-      end
-    end
     context '削除する場合' do
       it '削除がうまく行われる' do
         visit dangerous_spots_path
