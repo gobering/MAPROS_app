@@ -1,6 +1,6 @@
 <%= form_with(model: dangerous_spot, local: true) do |form| %>
   <% if dangerous_spot.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(dangerous_spot.errors.count, "件のエラー") %> が発生したため送信されませんでした</h2>
 
       <% dangerous_spot.errors.full_messages.each do |message| %>
@@ -47,7 +47,7 @@
 <br>
 
 <div class="input-group mb-3">
-  <input id="address" type="text" id="txt-search" class="form-control input-group-prepend" placeholder="地名・地点を入力を入力"></input>
+  <input type="text" id="textSearch" class="form-control input-group-prepend" placeholder="地名・地点を入力を入力" value="<%= dangerous_spot.address ||= nil %>"></input>
   <span class="input-group-btn input-group-append">
     <input type="button" id="btn-search" value="検索" class="btn btn-primary" onclick="codeAddress()"><i class="fas fa-search"></i> </input>
   </span>
@@ -92,7 +92,7 @@ function initMap(){
 let geocoder
 let aft
 function codeAddress(){
-  let inputAddress = document.getElementById('address').value;
+  let inputAddress = document.getElementById('textSearch').value;
   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
     if (status == 'OK') {
         //マーカーが複数できないようにする

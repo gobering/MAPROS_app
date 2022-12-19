@@ -6,7 +6,7 @@
   <% end %>
 
   <div class="input-group mb-3">
-    <input id="address" type="text" id="txt-search" class="form-control input-group-prepend" placeholder="地名・地点を入力を入力"></input>
+    <input type="text" id="textSearch" class="form-control input-group-prepend" placeholder="地名・地点を入力を入力"></input>
     <span class="input-group-btn input-group-append">
       <input type="button" id="btn-search" value="検索" class="btn btn-primary" onclick="codeAddress()"><i class="fas fa-search"></i> </input>
     </span>
@@ -42,7 +42,7 @@
     </tbody>
   </table>
   <div class="pagination"><%= paginate @dangerous_spots %></div>
-
+<p id="display"></p>
 <div id='map' class="p-2 w-100 bd-highlight"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
 <style>
@@ -103,7 +103,7 @@ function initMap(){
             
             
             function codeAddress(){
-              let inputAddress = document.getElementById('address').value;
+              let inputAddress = document.getElementById('textSearch').value;
               
               geocoder.geocode( { 'address': inputAddress}, function(results, status) {
                 if (status == 'OK') {

@@ -19,16 +19,5 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content '車'
       end
     end
-    context '投稿にラベルをつける事ができる' do
-      it '新規投稿作成時にラベルをつける事ができる' do
-        visit  new_dangerous_spot_path
-        fill_in 'dangerous_spot[address]',with: '大阪府'
-        fill_in 'dangerous_spot[content]',with: '狭い'
-        fill_in 'dangerous_spot[detail]',with: '道狭すぎ'
-        check "dangerous_spot_label_ids_#{(@label.id)}"
-        click_on '登録する'
-        expect(page).to have_content '大阪府'
-      end
-    end
   end
 end
