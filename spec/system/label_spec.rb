@@ -3,6 +3,7 @@ RSpec.describe 'タスク管理機能', type: :system do
   before do
     user = FactoryBot.create(:user)
     post = FactoryBot.create(:dangerous_spot)
+    @label = FactoryBot.create(:label)
     visit new_user_session_path
     fill_in 'user[email]', with: 'aiueo@example.com'
     fill_in 'user[password]', with: '123456'
@@ -24,8 +25,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'dangerous_spot[address]',with: '大阪府'
         fill_in 'dangerous_spot[content]',with: '狭い'
         fill_in 'dangerous_spot[detail]',with: '道狭すぎ'
-        fill_in 'dangerous_spot[latitude]',with: '34.6413315'
-        fill_in 'dangerous_spot[longitude]',with: '135.5629394'
         check "dangerous_spot_label_ids_#{(@label.id)}"
         click_on '登録する'
         expect(page).to have_content '大阪府'
