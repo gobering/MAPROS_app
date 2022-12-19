@@ -6,5 +6,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
       redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
     end
   end
-
 end
