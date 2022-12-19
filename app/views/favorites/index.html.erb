@@ -61,7 +61,7 @@
 
 
   function codeAddress(){
-    let inputAddress = document.getElementById('address').value;
+    let inputAddress = document.getElementById('textSearch').value;
 
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
       if (status == 'OK') {
