@@ -8,6 +8,7 @@
                )
 end
 
+
 Label.create!(name: "歩行")
 Label.create!(name: "車")
 Label.create!(name: "自動車")
