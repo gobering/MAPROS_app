@@ -1,5 +1,11 @@
 require 'rails_helper'
 describe 'ユーザーモデル機能', type: :model do
+  context 'ユーザー名を作成' do
+    it 'バリデーションにひっかからない' do
+      user = FactoryBot.build(:user)
+      expect(user).to be_valid
+    end
+  end
   context 'ユーザー名が空' do
     it 'バリデーションにひっかかる' do
       user = FactoryBot.build(:user, name: nil)
