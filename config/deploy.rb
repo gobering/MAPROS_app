@@ -6,7 +6,7 @@ set :application, 'mapros_app'
 
 # cloneするgitのレポジトリ
 # （xxxxxxxx：ユーザ名、yyyyyyyy：アプリケーション名）
-set :repo_url, 'https://github.com/gobering/MAPROS_app.git'
+set :repo_url, 'https://github.com/gobering/MAPROS_app'
 
 # deployするブランチ。デフォルトでmainを使用している場合、masterをmainに変更してください。
 set :branch, ENV['BRANCH'] || 'master'
