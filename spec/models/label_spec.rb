@@ -1,8 +1,5 @@
 require 'rails_helper'
 describe 'ラベルモデル機能', type: :model do
-  before do
-    @user = FactoryBot.create(:user)
-  end
   context 'ラベルを作成' do
     it '作成した内容が反映される' do
       label = FactoryBot.build(:label)
