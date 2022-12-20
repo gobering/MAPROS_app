@@ -10,8 +10,9 @@
 <p>・自分が投稿したものをマイページで一覧で見ることができます。</p>
 <p>・自分の住んでいる地域の近くの投稿を「お気に入り登録」してまとめることができます。</p>
 
-
-<div><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mb-1" %></div>
-<div><%= link_to 'ゲスト管理者ログイン（閲覧用）', users_admin_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mb-1" %></div>
+<% unless user_signed_in? %>
+  <div><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mb-1" %></div>
+  <div><%= link_to 'ゲスト管理者ログイン（閲覧用）', users_admin_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mb-1" %></div>
+<% end %>
 
 
