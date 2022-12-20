@@ -32,11 +32,13 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
         expect(page).to have_content 'ページ'
       end
       it '投稿一覧画面に遷移する' do
+        click_on "OK"
         click_on "投稿一覧画面"
         visit dangerous_spots_path
         expect(page).to have_content '危険地点一覧'
       end
       it 'お気に入り一覧画面に遷移する' do
+        click_on "OK"
         click_on "お気に入り一覧"
         visit favorites_path
         expect(page).to have_content '自分のお気に入り一覧'
@@ -44,7 +46,8 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
     end
     context 'ログアウトした場合' do
       it "ログイン画面に戻る" do
-        click_on "Log out"
+        click_on "OK"
+        click_on "ログアウト"
         expect(page).to have_content "ログアウトしました"
       end
     end

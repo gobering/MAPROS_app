@@ -10,9 +10,8 @@ RSpec.describe 'お気に入りテスト', type: :system do
     click_on 'ログイン'
   end
   describe 'お気に入りボタン' do
-    context '店舗詳細にお気に入りボタンが表示される' do
+    context '詳細にお気に入りボタンが表示される' do
       it 'お気に入りする' do
-        click_on "投稿一覧画面"
         visit  dangerous_spots_path
         click_on "詳細"
         visit dangerous_spot_path(@user.id)
@@ -20,9 +19,8 @@ RSpec.describe 'お気に入りテスト', type: :system do
         expect(page).to have_content "お気に入り解除する"
       end
     end
-    context '店舗詳細にお気に入りボタンが表示される' do
+    context '詳細にお気に入りボタンが表示される' do
       it 'お気に入りする' do
-        click_on "投稿一覧画面"
         visit  dangerous_spots_path
         click_on "詳細"
         visit dangerous_spot_path(@user.id)
