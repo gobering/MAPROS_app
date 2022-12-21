@@ -79,15 +79,15 @@
         }); 
         infoWindow[i] = new google.maps.InfoWindow({
           content: `<a href='/dangerous_spots/${ id }' data-turbolinks="false">${ markerData[i]['address'] }</a>`
-          });
-          markerEvent(i);
+        });
+        markerEvent(i);
       };
     }
 
     function markerEvent(i) {
       marker[i].addListener('click', function () {
         infoWindow[i].open(map, marker[i]);
-        });
+      });
     }
 
     function codeAddress(){
@@ -101,7 +101,7 @@
           });
           display.textContent = "検索結果：" + results[ 0 ].geometry.location
         } else {
-            alert('該当する結果がありませんでした：' + status);
+          alert('該当する結果がありませんでした：' + status);
         }
       });   
     }

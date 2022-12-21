@@ -3,7 +3,7 @@ class DangerousSpotsController < ApplicationController
   before_action :authenticate_user! 
 
   def index
-    @dangerous_spots = DangerousSpot.all.page(params[:page]).per(3)
+    @dangerous_spots = DangerousSpot.all.page(params[:page]).per(5)
     gon.dangerous_spots = DangerousSpot.all
   end
 

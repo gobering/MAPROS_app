@@ -61,7 +61,7 @@
       marker = new google.maps.Marker({
         position:  {lat: <%= @dangerous_spot.latitude %>, lng: <%= @dangerous_spot.longitude %>},
         map: map
-    });
+      });
     }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
