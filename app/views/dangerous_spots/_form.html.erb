@@ -78,7 +78,7 @@
       marker = new google.maps.Marker({
         position:  {lat:  markerData['latitude'], lng: markerData['longitude']},
         map: map
-    });
+      });
     } else {
       map = new google.maps.Map(document.getElementById('map'), {
         center:  {lat: 35.6803997, lng: 139.7690174},  //東京
@@ -95,14 +95,14 @@
       if (status == 'OK') {
           //マーカーが複数できないようにする
         if (aft == true){
-            marker.setMap(null);
+          marker.setMap(null);
         }
         //新しくマーカーを作成する
         map.setCenter(results[0].geometry.location);
-            marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location,
-            draggable: true // ドラッグ可能にする
+          marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location,
+          draggable: true // ドラッグ可能にする
         });
         //二度目以降か判断
         aft = true
@@ -111,9 +111,9 @@
         document.getElementById('longitude').value = results[0].geometry.location.lng();
         // マーカーのドロップ（ドラッグ終了）時のイベント
         google.maps.event.addListener( marker, 'dragend', function(ev){
-            // イベントの引数evの、プロパティ.latLngが緯度経度
-            document.getElementById('latitude').value = ev.latLng.lat();
-            document.getElementById('longitude').value = ev.latLng.lng();
+          // イベントの引数evの、プロパティ.latLngが緯度経度
+          document.getElementById('latitude').value = ev.latLng.lat();
+          document.getElementById('longitude').value = ev.latLng.lng();
         });
       } else {
         alert('該当する結果がありませんでした：' + status);

@@ -55,7 +55,7 @@ class DangerousSpotsController < ApplicationController
   end
 
   private
-    
+
   def set_dangerous_spot
     @dangerous_spot = DangerousSpot.find(params[:id])
   end
